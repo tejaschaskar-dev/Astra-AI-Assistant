@@ -47,6 +47,12 @@ class AAA_Admin_Page {
                     </div>
                 </div>
 
+                <!-- Action Buttons -->
+                <div id="aaa-actions">
+                    <button id="aaa-clear">🗑️ Clear Chat</button>
+                    <button id="aaa-export">📥 Export Chat</button>
+                </div>
+
                 <!-- Chat Box -->
                 <div id="aaa-chat-box">
                     <div id="aaa-messages">
