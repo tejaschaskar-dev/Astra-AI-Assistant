@@ -15,12 +15,49 @@ document.addEventListener('DOMContentLoaded', function () {
     if (clearBtn)  clearBtn.addEventListener('click', clearChat);
     if (exportBtn) exportBtn.addEventListener('click', exportChat);
 
-    document.querySelectorAll('.aaa-quick-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            input.value = this.textContent;
-            sendMessage();
+    // Suggested questions map
+    var suggestions = {
+        'header'     : ['Change header color', 'Make header sticky', 'Transparent header', 'Header logo size'],
+        'footer'     : ['Change footer color', 'Add footer widgets', 'Hide footer', 'Footer columns'],
+        'sidebar'    : ['Remove sidebar', 'Sidebar width', 'Sidebar on mobile', 'Move sidebar left'],
+        'font'       : ['Change body font', 'Increase font size', 'Change heading font', 'Font weight'],
+        'color'      : ['Change primary color', 'Change link color', 'Change text color', 'Background color'],
+        'logo'       : ['Change logo size', 'Add retina logo', 'Hide logo on mobile', 'Logo padding'],
+        'mobile'     : ['Mobile header layout', 'Hide element on mobile', 'Mobile font size', 'Mobile menu'],
+        'layout'     : ['Full width layout', 'Boxed layout', 'Content width', 'Change container size'],
+        'woocommerce': ['Shop page columns', 'Product sidebar', 'Cart page layout', 'Checkout style'],
+        'menu'       : ['Change menu color', 'Sticky menu', 'Mobile menu style', 'Dropdown menu'],
+        'default'    : ['Change header color', 'Full width layout', 'Disable sidebar', 'Change fonts'],
+    };
+
+    function updateSuggestions(query) {
+        var quick = document.getElementById('aaa-quick');
+        if (!quick) return;
+        var matched = 'default';
+        var q = query.toLowerCase();
+        Object.keys(suggestions).forEach(function(key) {
+            if (q.indexOf(key) !== -1) matched = key;
         });
+        quick.innerHTML = '';
+        suggestions[matched].forEach(function(s) {
+            var btn = document.createElement('button');
+            btn.className = 'aaa-quick-btn';
+            btn.textContent = s;
+            btn.addEventListener('click', function() {
+                input.value = s;
+                sendMessage();
+            });
+            quick.appendChild(btn);
+        });
+    }
+
+    // Update suggestions as user types
+    input.addEventListener('input', function() {
+        if (this.value.length > 2) updateSuggestions(this.value);
     });
+
+    // Set default suggestions on load
+    updateSuggestions('default');
 
     // Load previous messages from history
     function loadHistory() {

@@ -40,7 +40,7 @@ class AAA_Admin_Page {
                     <div id="aaa-avatar">🤖</div>
                     <div id="aaa-header-text">
                         <h2>Astra AI Assistant</h2>
-                        <p>Powered by Claude AI &bull; Astra Expert</p>
+                        
                     </div>
                     <div id="aaa-status">
                         <div class="status-dot"></div>&nbsp;Online
