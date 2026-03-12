@@ -3,3 +3,4 @@ setup.php
 .DS_Store
 Thumbs.db
 node_modules/
+.claude/
