@@ -18,7 +18,7 @@ class AAA_AI_Connector {
                 "X-Title"       => "Astra AI Assistant",
             ],
             "body" => json_encode([
-                "model"    => "anthropic/claude-3-haiku",
+                "model"    => "anthropic/claude-haiku-4-5",
                 "messages" => [
                     [ "role" => "system",  "content" => $system_prompt ],
                     [ "role" => "user",    "content" => $full_message  ],
